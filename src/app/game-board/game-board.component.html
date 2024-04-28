@@ -1,3 +1,22 @@
-<button *ngIf="!value">{{value}}</button>
-<button *ngIf="value =='X'">{{value}}</button>
-<button *ngIf="value =='O'">{{value}}</button>
+<!-- The following implements a pushable 3d button effect
+     by initiating the button with the class "pushable"
+     and then adding the classes "shadow", "edge", and "front"
+     for the 3 scenarios of the button in each cell of the grid:
+     <null>, <'X'>, <'O'> -->
+<button class="pushable" *ngIf="!value">
+    <span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front">{{value}}</span>
+</button>
+
+<button class="pushable" *ngIf="value =='X'">
+    <span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front">{{value}}</span>
+</button>
+
+<button class="pushable" *ngIf="value =='O'">
+    <span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front">{{value}}</span>
+</button>

@@ -1,5 +1,9 @@
 # Vjd3AngularGameTTT
 
+This project was created by Val Dauterive for a class on Angular. Angular guides on Angular.io were key in solving numerous issues in the process of learning Angular. Thank you!
+
+`ng new vjd3-angular-game-TTT`
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
 ## Development server
@@ -8,19 +12,18 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`. 
+
+`ng generate component square --inline-template --skip-tests`
+and
+`ng generate component game-board --inline-template --skip-tests`
+
+This was used to create the `square` and `game-board` components. This does NOT add the necessary import lines to the `app.component.ts` or the `square.component.ts` files as the generate command is run. That code was added after each generate was completed.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. This was used in testing to force clean builds of the app to ensure the most recent code was being used before running the serve command.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 

@@ -1,11 +1,52 @@
+<!-- This is the html that actually renders the game.
+     The div class "outer-container" is used to center the game,
+     the h2 tags are the 5 possible scenarios of the game page.
+     1) The h2 will show the "Let's Play" message with the (Start Game) button 
+     2) The h2 will show the "Player X won!!" message with the (Start Game) button 
+     3) The h2 will show the "Player O won!!" message with the (Start Game) button 
+     4) The h2 will show the "Draw!!" message with the (Start Game) button 
+     5) The h2 will show the "Current Player : X" message with the (Quit) button 
+    
+    The Quit button will force the game into a Draw state by using the end of move counter position of 9.
+    Starting at 0, there are 9 possible moves in the game, with the last increment being the end of the game.
+    The quit button simply skips the state ahead to the end. Without a winner, at the end of the sequence,
+    the game is a draw.
+
+    If the game is not over, the game board will be rendered, and each click will increment the move counter
+    in the makeMove() function.
+-->
+
 <div class="outer-container">
-    <h2 *ngIf="newPage">Lets Play Tic Tac Toe</h2>
-    <h2 *ngIf="!champion && !gameDraw && !newPage">Current Player : {{getPlayer}}</h2>
-    <h2 *ngIf="champion">Player {{champion}} won!!</h2>
-    <h2 *ngIf="gameDraw">Draw!!</h2>
+    <!-- The text can be this... -->
+    <h2 *ngIf="newPage">
+        <p style="text-align: center;">
+            Lets Play
+        </p>
+        <p>
+            Tic Tac Toe
+        </p>
+    </h2>
+    
+    <!-- or this -->
+    <h2 *ngIf="champion">
+        Player {{champion}} won!!
+    </h2>
+    
+    <!-- or this -->
+    <h2 *ngIf="gameDraw">
+        Draw!!
+    </h2>
+    
+    <!-- and we will draw this button -->
     <button  *ngIf="champion || gameDraw || newPage" outline  (click)="startGame()"> Start Game </button>
+    
+    <!-- But, if those other 3 scenarios are not true, we will draw this -->
+    <h2 *ngIf="!champion && !gameDraw && !newPage">
+        Current Player : {{getPlayer}}
+        <button style="margin-left: 10px;" *ngIf="!champion && !gameDraw && !newPage" outline (click)="makeMove(9)"> Quit </button>
+    </h2>
 
-
+    <!-- The game board will be rendered here -->
     <main *ngIf="!champion && !gameDraw">
         <app-game-board *ngFor="let val of square; let i=index" [value]="val" (click)="makeMove(i)"></app-game-board>
     </main>

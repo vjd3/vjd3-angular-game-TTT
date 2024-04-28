@@ -1,7 +1,124 @@
+/* These are the defaults for the game board buttons */
+/* For testing, if the buttons are white, the pushable CSS is not working */
 button{
     width: 100%;
     height: 100%;
     font-size: 60px;
     background-color: white;
-    border: none;
+    border: 1px solid lightgray;
+    cursor: pointer;
 }
+
+/* src/app/game-board/game-board.component.css */
+/* The following implements a pushable 3d button effect */
+/* There are 3 layers of the button.
+   The shadow, the edge, and the front */
+
+   /* the front is the top most layer of the button where the button text is 
+     displayed. the front is highlighted on hover, and moved slightly upwards */
+
+   /* the edge is the second layer of the button, and is used to darken the corners
+      of the button */
+
+   /* the shadow is the bottom layer of the button, and is used to create the 3d effect.
+     It moves slightly downward when hovering over the button to give an upward moving
+     effect to the button */
+
+   /* the pushable is the button itself, and is used to initiate the 3d effect. It has 
+     the shadow, edge, and front layers as children */
+
+   /* The bezier in the transition property animates the button movement to enhance the 3d effect */
+
+  .pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+  }
+
+  .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      hsl(340deg 100% 16%) 0%,
+      hsl(340deg 100% 32%) 8%,
+      hsl(340deg 100% 32%) 92%,
+      hsl(340deg 100% 16%) 100%
+    );
+  }
+
+  .front {
+    display: block;
+    position: relative;
+    height: 61%;
+    padding: 35px 42px;
+    border-radius: 12px;
+    font-size: 200%;
+    font-weight: bolder;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+
+  .pushable:hover {
+    filter: brightness(110%);
+  }
+
+  .pushable:hover .front {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+
+  .pushable:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+
+  .pushable:hover .shadow {
+    transform: translateY(4px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+
+  .pushable:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+
+  .pushable:focus:not(:focus-visible) {
+    outline: none;
+  }
