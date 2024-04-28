@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
+import { GameBoardComponent } from '../game-board/game-board.component';
 
 @Component({
   selector: 'app-square',
+  standalone: true,
+  imports: [NgIf, NgFor, GameBoardComponent],
   templateUrl: './square.component.html',
   styleUrls: ['./square.component.css']
 })
